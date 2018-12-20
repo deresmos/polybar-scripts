@@ -61,7 +61,7 @@ input_volume() {
      pacmd list-sources | awk '/^\s+name: /{indefault = $2 == "'"<$(get_default_source)>"'"}
              /^\s+muted: / && indefault {muted=$2}
              /^\s+volume: / && indefault {volume=$5}
-             END { print muted=="no"?volume:"Muted" }'
+             END { print muted=="no"?"":"%{F#777}%{F-}" }'
 }
 
 output_volume_listener() {
